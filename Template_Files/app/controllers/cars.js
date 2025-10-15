@@ -20,7 +20,7 @@ module.exports.create = async function (req, res, next) {
 
     // Insert into the DB
     let result = await CarModel.create(car);
-    console.log("Result: " + result);
+    console.log(result);
 
     // Send a response
     res.status(200);
@@ -28,6 +28,7 @@ module.exports.create = async function (req, res, next) {
       {
         success: true,
         message: "Car created successfully.",
+        carId: result._id
       }
     );
 
