@@ -19,7 +19,7 @@ module.exports.create = async function (req, res, next) {
     let car = req.body;
 
     // Insert into the DB
-    let result = await CarModel.create();
+    let result = await CarModel.create(car);
     console.log("Result: " + result);
 
     // Send a response
@@ -28,7 +28,6 @@ module.exports.create = async function (req, res, next) {
       {
         success: true,
         message: "Car created successfully.",
-        carId: result._id
       }
     );
 
@@ -85,7 +84,7 @@ module.exports.update = async function (req, res, next) {
 module.exports.remove = async function (req, res, next) {
   try {
     // Delete  using the id sent in the parameter of the request
-    let result = await CarModel.deleteOne({ _id: req.params.Id });
+    let result = await CarModel.deleteOne({ _id: req.params.carId });
     console.log("Result: " + result);
 
     // Handle the result and send a response
